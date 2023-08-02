@@ -40,6 +40,7 @@ public class Filtering {
         filteredMenu.forEach(System.out::println);
 
         //이미 정렬이 되어있기 때문에, 320 이후에는 필터링 하지 않음
+        //takeWhile 사용 
         System.out.println("Sorted menu sliced with takeWhile()");
         List<Dish> slicedMenu1 = specialMenu.stream()
                 .takeWhile(dish -> dish.getCalories() < 320)
