@@ -61,6 +61,13 @@ public class Filtering {
                 .collect(toList());
         limitDishes.forEach(System.out::println);
 
+        //skip함수 사용 처음 2개 요소 skip
+        System.out.println("using skip");
+        List<Dish> skipDishes = Dish.menu.stream()
+                .filter(dish -> dish.getCalories() > 300)
+                .skip(2)
+                .collect(toList());
+        skipDishes.forEach(System.out::println);
 
     }
 
