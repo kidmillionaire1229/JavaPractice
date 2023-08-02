@@ -14,6 +14,7 @@ public class StreamBasic {
 
     public static void main(String[] args) {
         getLowCaloricDishesNamesInJava8(Dish.menu).forEach(System.out::println);
+        getLowCaloricDishesNamesInJava7(Dish.menu).forEach(System.out::println);
     }
 
 
@@ -33,7 +34,12 @@ public class StreamBasic {
             public int compare(Dish d1, Dish d2) {
                 return Integer.compare(d1.getCalories(), d2.getCalories());
             }
-        }); 
+        });
+
+        for (Dish d : lowCaloricDishes) {
+            lowCaloricDishesName.add(d.getName());
+        }
+        return lowCaloricDishesName;
     }
     public static List<String> getLowCaloricDishesNamesInJava8(List<Dish> dishes){
         return dishes.stream()
