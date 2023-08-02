@@ -4,8 +4,8 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
-import org.w3c.dom.ls.LSOutput;
 import 스트림.ch4.Dish;
+
 
 public class Filtering {
 
@@ -37,6 +37,14 @@ public class Filtering {
                     return dish.getCalories() < 320;
                 })
                 .collect(toList());
+        filteredMenu.forEach(System.out::println);
+
+        //이미 정렬이 되어있기 때문에, 320 이후에는 필터링 하지 않음
+        System.out.println("Sorted menu sliced with takeWhile()");
+        List<Dish> slicedMenu1 = specialMenu.stream()
+                .takeWhile(dish -> dish.getCalories() < 320)
+                .collect(toList());
+        slicedMenu1.forEach(System.out::println);
 
 
     }
