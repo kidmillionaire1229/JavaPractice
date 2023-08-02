@@ -48,10 +48,19 @@ public class Filtering {
         slicedMenu1.forEach(System.out::println);
 
         //dropWhile 사용
-        System.out.println("sorted menu sliced with takeWhile()");
+        System.out.println("sorted menu sliced with dropWhile()");
         List<Dish> slicedMenu2 = specialMenu.stream()
                 .dropWhile(dish -> dish.getCalories() < 320)
                 .collect(toList());
+
+        //limit 사용 (프레디케이트와 일치하는 처음 세 요소를 선택한 다음에 즉시 결과 반환)
+        System.out.println("using limit");
+        List<Dish> limitDishes = Dish.menu.stream()
+                .filter(dish -> dish.getCalories() > 300)
+                .limit(3)
+                .collect(toList());
+        limitDishes.forEach(System.out::println);
+
 
     }
 
