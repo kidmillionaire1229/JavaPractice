@@ -1,4 +1,4 @@
-package modernjavainaction.chap04;
+package 스트림.ch4;
 
 import java.util.Arrays;
 import java.util.List;
