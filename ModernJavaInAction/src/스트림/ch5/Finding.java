@@ -1,5 +1,7 @@
 package 스트림.ch5;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import 스트림.ch4.Dish;
 
@@ -13,6 +15,7 @@ public class Finding {
         System.out.println("isHealthyMenu() = " + isHealthyMenu());
         System.out.println("isHealthyMenu2() = " + isHealthyMenu2());
         findAnyVegetarian();
+        findFirstInList();
 
     }
 
@@ -32,12 +35,22 @@ public class Finding {
     }
 
     //검색
-    //findAny: 임의의 요소 반환 (가장 먼저 탐색) 
+    //findAny: 임의의 요소 반환 (가장 먼저 탐색)
     private static void findAnyVegetarian(){
                 Dish.menu.stream()
                         .filter(Dish::isVegetarian)
                         .findAny()
                         .ifPresent(dish-> System.out.println("find Any dish = " + dish));
 
+    }
+
+    //findFirst : 검색된 요소들 중에 첫 번째 요소를 찾음
+    private static void findFirstInList(){
+        List<Integer> someNumbers = Arrays.asList(1, 2, 3, 4, 5);
+        Optional<Integer> firstNumber = someNumbers.stream()
+                .map(n -> n * n)
+                .filter(n -> n % 3 == 0)
+                .findFirst();
+        firstNumber.ifPresent(number -> System.out.println("first number = " + number));
     }
 }
