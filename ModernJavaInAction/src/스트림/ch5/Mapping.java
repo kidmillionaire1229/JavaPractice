@@ -50,11 +50,20 @@ public class Mapping {
 
 
         //[(1,3),(1,4),...와 같이 숫자 쌍으로 반환
-        // i를 stream<int[]>로 반환하니까 그걸 flatMap으로 평면화 시켜야함 
-        numbers1.stream()
-                .flatMap(i-> numbers2.stream()
-                        .map(j->new int[]{i,j}))
+        // i를 stream<int[]>로 반환하니까 그걸 flatMap으로 평면화 시켜야함
+        List<int[]> makeParisFromList = numbers1.stream()
+                .flatMap(i -> numbers2.stream()
+                        .map(j -> new int[]{i, j}))
                 .collect(toList());
+
+
+        //합이 3인 쌍만 반환
+        List<int[]> pairsSumDividedBy3 = numbers1.stream()
+                .flatMap(i -> numbers2.stream()
+                        .filter(j -> (i + j) % 3 == 0)
+                        .map(j -> new int[]{i, j}))
+                .collect(toList());
+        pairsSumDividedBy3.forEach(pair -> System.out.println(pair[0]+","+pair[1]));
     }
 
 }
