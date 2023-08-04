@@ -9,10 +9,14 @@ public class Mapping {
 
     public static void main(String[] args) {
 
-        //map함수 사용하여 Dish의 이름 추출 => List<String> 
+        //map함수 사용하여 Dish의 이름 추출 => List<String>
         List<String> dishNames = Dish.menu.stream()
                 .map(Dish::getName)
                 .collect(toList());
+
+        System.out.println("dishNames = " + dishNames);
+
+        
     }
 
 }
