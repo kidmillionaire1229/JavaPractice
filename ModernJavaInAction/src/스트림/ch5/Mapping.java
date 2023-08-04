@@ -23,6 +23,24 @@ public class Mapping {
                 .map(String::length)
                 .collect(toList());
         System.out.println("wordsLengths = " + wordsLengths);
+
+        //잘못된 경우
+        words.stream()
+                .map(word->word.split(""))
+                .map(Arrays::stream)
+                .distinct()
+                .collect(toList());
+
+
+        //Arrays::strem은 String[] -> Stream<String>
+        //Stream<Stream<String>> -> Stream<String> 
+        List<String> uniqueCharacters = words.stream()
+                .map(word -> word.split(""))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .collect(toList());
+
+        System.out.println("uniqueCharacters = " + uniqueCharacters);
     }
 
 }
