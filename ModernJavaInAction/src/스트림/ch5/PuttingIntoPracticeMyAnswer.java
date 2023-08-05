@@ -30,7 +30,13 @@ public class PuttingIntoPracticeMyAnswer {
                 .collect(toList());
         System.out.println("transactionin2011 = " + transactionin2011);
 
-
+        //2.거래자가 근무하는 모든 도시를 중복 없이 나열하시오. 
+        List<String> citiesOfTrader = transactions.stream()
+                .map(Transaction::getTrader)
+                .map(Trader::getCity)
+                .distinct()
+                .collect(toList());
+        System.out.println("citiesOfTrader = " + citiesOfTrader);
     }
 
 }
