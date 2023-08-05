@@ -2,6 +2,7 @@ package 스트림.ch5;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import 스트림.ch4.Dish;
@@ -29,6 +30,14 @@ public class NumericStream {
         IntStream intStream = Dish.menu.stream()
                 .mapToInt(Dish::getCalories);
         Stream<Integer> stream = intStream.boxed();
+
+        //max (기본값 없을 수도 있음) => optionalInt 반환
+        OptionalInt maxCalories = Dish.menu.stream()
+                .mapToInt(Dish::getCalories)
+                .max();
+
+        int max = maxCalories.orElse(1);
+        System.out.println("max = " + max);
     }
 
 }
