@@ -45,6 +45,11 @@ public class NumericStream {
         IntStream evenNumbers = IntStream.rangeClosed(1, 100)
                 .filter(n -> n % 2 == 0);
         System.out.println("짝수의 개수"+evenNumbers.count());
+
+        //range 사용 : 1,100 포함하지 않음
+        IntStream evenNumbers2 = IntStream.range(1, 100)
+                .filter(n -> n % 2 == 0);
+        System.out.println("range 사용"+evenNumbers2.count());
     }
 
 }
