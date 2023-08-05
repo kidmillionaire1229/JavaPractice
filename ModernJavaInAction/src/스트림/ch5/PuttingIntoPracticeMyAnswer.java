@@ -37,6 +37,13 @@ public class PuttingIntoPracticeMyAnswer {
                 .distinct()
                 .collect(toList());
         System.out.println("citiesOfTrader = " + citiesOfTrader);
+
+        //책 답안 (람다)
+        List<String> citiesOfTrader2 = transactions.stream()
+                .map(transaction -> transaction.getTrader().getCity())
+                .distinct()
+                .collect(toList());
+        System.out.println("citiesOfTrader2 = " + citiesOfTrader2);
     }
 
 }
