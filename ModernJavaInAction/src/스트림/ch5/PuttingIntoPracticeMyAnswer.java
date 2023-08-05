@@ -76,6 +76,13 @@ public class PuttingIntoPracticeMyAnswer {
                 .anyMatch(trader -> trader.getCity().equals("Milan"));
         System.out.println("isTraderExistsInMillan = " + isTraderExistsInMillan);
 
+        //6. 케임브리지에 거주하는 거래자의 모든 트랜잭션 값을 출력하시오.
+        List<Integer> cambridgeTransactionValue = transactions.stream()
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .map(Transaction::getValue)
+                .collect(toList());
+        System.out.println("cambridgeTransactionValue = " + cambridgeTransactionValue);
+
     }
 
 }
