@@ -70,6 +70,12 @@ public class PuttingIntoPracticeMyAnswer {
                 .reduce("", (n1, n2) -> n1 + n2);
         System.out.println("tradersName = " + tradersName);
 
+        //5. 밀라노에 거래자가 있는가?
+        boolean isTraderExistsInMillan = transactions.stream()
+                .map(Transaction::getTrader)
+                .anyMatch(trader -> trader.getCity().equals("Milan"));
+        System.out.println("isTraderExistsInMillan = " + isTraderExistsInMillan);
+
     }
 
 }
