@@ -3,6 +3,7 @@ package 스트림.ch5;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import 스트림.ch4.Dish;
 
 public class Reducing {
 
@@ -23,5 +24,13 @@ public class Reducing {
         Optional<Integer> min = numbers.stream().reduce(Integer::min);
         System.out.println("min");
         min.ifPresent(System.out::println);
+
+
+        //음식 총 칼로리 합계 구하기 
+        Integer totalCalories = Dish.menu.stream()
+                .map(Dish::getCalories)
+                .reduce(0, Integer::sum);
+        System.out.println("totalCalories = " + totalCalories);
+
     }
 }
