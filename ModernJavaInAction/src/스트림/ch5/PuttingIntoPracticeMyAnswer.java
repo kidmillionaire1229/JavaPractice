@@ -1,5 +1,8 @@
 package 스트림.ch5;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +22,14 @@ public class PuttingIntoPracticeMyAnswer {
                 new Transaction(mario, 2012, 700),
                 new Transaction(alan, 2012, 950)
         );
+
+        //1.2011년에 일어난 모든 트랜잭션을 찾아 값을 오름차순으로 정리하시오.
+        List<Transaction> transactionin2011 = transactions.stream()
+                .filter(transaction -> transaction.getYear() == 2011)
+                .sorted(comparing(Transaction::getValue))
+                .collect(toList());
+        System.out.println("transactionin2011 = " + transactionin2011);
+
 
     }
 
