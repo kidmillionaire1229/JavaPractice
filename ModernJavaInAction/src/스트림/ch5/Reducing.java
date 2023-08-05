@@ -10,8 +10,13 @@ public class Reducing {
         int sum = numbers.stream().reduce(0, (a, b) -> a + b);
         System.out.println("sum = " + sum);
 
-        //메서드 참조를 인자로 
+        //메서드 참조를 인자로
         Integer sum2 = numbers.stream().reduce(0, Integer::sum);
         System.out.println("sum2 = " + sum2);
+
+        //최댓값 구하기
+        numbers.stream().reduce((a,b)->Integer.max(a,b));
+
+        
     }
 }
