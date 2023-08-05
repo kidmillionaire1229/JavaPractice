@@ -44,6 +44,15 @@ public class PuttingIntoPracticeMyAnswer {
                 .distinct()
                 .collect(toList());
         System.out.println("citiesOfTrader2 = " + citiesOfTrader2);
+
+        //3. 케임브리지에서 근무하는 모든 거래자를 찾아서 이름순으로 정렬하시오.
+        List<String> traderNamesInCambridge = transactions.stream()
+                .filter(transaction -> transaction.getTrader().getCity() == "Cambridge")
+                .map(transaction -> transaction.getTrader())
+                .sorted(comparing(Trader::getName))
+                .map(Trader::getName)
+                .collect(toList());
+        System.out.println("traderNamesInCambridge = " + traderNamesInCambridge);
     }
 
 }
