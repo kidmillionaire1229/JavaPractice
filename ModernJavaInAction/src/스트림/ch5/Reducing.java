@@ -38,5 +38,10 @@ public class Reducing {
                 .reduce(0, (Integer::sum));
         System.out.println("mapReduceCountDish = " + mapReduceCountDish);
 
+        //참고 count 사용
+        long count = Dish.menu.stream()
+                .count();
+        System.out.println("dish count = " + count);
+
     }
 }
