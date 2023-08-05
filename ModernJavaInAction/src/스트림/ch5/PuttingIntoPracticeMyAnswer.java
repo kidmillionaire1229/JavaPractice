@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class PuttingIntoPracticeMyAnswer {
 
@@ -94,6 +95,18 @@ public class PuttingIntoPracticeMyAnswer {
                 .map(transaction -> transaction.getValue())
                 .reduce(0, Integer::max);
         System.out.println("reduceMax = " + reduceMax);
+
+        //8. 전체 트랜잭션 중 최솟값은 얼마인가?
+        Integer reduceMin = transactions.stream()
+                .map(Transaction::getValue)
+                .reduce(0, Integer::min);
+        System.out.println("reduceMin = " + reduceMin);
+
+        //책 답안
+        //Comparator 인자를 받는 min , max 사용
+        Optional<Transaction> comparatorMin = transactions.stream()
+                .min(comparing(Transaction::getValue));
+        comparatorMin.ifPresent(transaction -> System.out.println("transaction.getValue() = " + transaction.getValue()));
 
 
     }
