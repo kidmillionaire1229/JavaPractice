@@ -83,6 +83,13 @@ public class PuttingIntoPracticeMyAnswer {
                 .collect(toList());
         System.out.println("cambridgeTransactionValue = " + cambridgeTransactionValue);
 
+        //6번 책 답안 (forEach 사용 출력) 
+        transactions.stream()
+                .filter(transaction -> "Cambridge".equals(transaction.getTrader().getCity()))
+                .map(Transaction::getValue)
+                .forEach(System.out::println);
+
+
     }
 
 }
