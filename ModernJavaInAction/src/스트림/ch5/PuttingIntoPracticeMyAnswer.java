@@ -53,6 +53,15 @@ public class PuttingIntoPracticeMyAnswer {
                 .map(Trader::getName)
                 .collect(toList());
         System.out.println("traderNamesInCambridge = " + traderNamesInCambridge);
+
+        //3번 책 답안 
+        List<Trader> traders = transactions.stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> trader.getCity().equals("Cambridge"))
+                .distinct()
+                .sorted(comparing(Trader::getName))
+                .collect(toList());
+        System.out.println(traders);
     }
 
 }
