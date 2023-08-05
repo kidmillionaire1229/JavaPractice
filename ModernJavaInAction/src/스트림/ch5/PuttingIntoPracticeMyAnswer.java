@@ -54,7 +54,7 @@ public class PuttingIntoPracticeMyAnswer {
                 .collect(toList());
         System.out.println("traderNamesInCambridge = " + traderNamesInCambridge);
 
-        //3번 책 답안 
+        //3번 책 답안
         List<Trader> traders = transactions.stream()
                 .map(Transaction::getTrader)
                 .filter(trader -> trader.getCity().equals("Cambridge"))
@@ -62,6 +62,14 @@ public class PuttingIntoPracticeMyAnswer {
                 .sorted(comparing(Trader::getName))
                 .collect(toList());
         System.out.println(traders);
+
+        //4. 모든 거래자의 이름을 알파벳순으로 정렬해서 반환 (문자열로 반환)
+        String tradersName = transactions.stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .sorted()
+                .reduce("", (n1, n2) -> n1 + n2);
+        System.out.println("tradersName = " + tradersName);
+
     }
 
 }
