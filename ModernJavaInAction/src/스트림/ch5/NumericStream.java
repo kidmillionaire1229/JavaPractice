@@ -57,6 +57,15 @@ public class NumericStream {
                         .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0).boxed()
                         .map(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)}));
         pythagoreanTriples.forEach(t-> System.out.println(t[0]+","+t[1]+","+t[2]));
+
+        Stream<int[]> pythagoreanTriples2 = IntStream.rangeClosed(1, 100).boxed()
+                .flatMap(a -> IntStream.rangeClosed(a, 100)
+                        .mapToObj(b -> new double[]{a, b, Math.sqrt(a * a + b * b)})
+                        .filter(t -> t[2] % 1 == 0))
+                .map(array -> Arrays.stream(array).mapToInt(a -> (int) a).toArray());
+
+        System.out.println("pythagoreanTriples2 = " + pythagoreanTriples2);
+                
     }
 
 }
