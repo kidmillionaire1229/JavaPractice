@@ -2,6 +2,7 @@ package 스트림.ch5;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Reducing {
 
@@ -15,8 +16,12 @@ public class Reducing {
         System.out.println("sum2 = " + sum2);
 
         //최댓값 구하기
-        numbers.stream().reduce((a,b)->Integer.max(a,b));
+        Integer max = numbers.stream().reduce(0, (a, b) -> Integer.max(a, b));
+        System.out.println("max = " + max);
 
-        
+        //최솟값 구하기
+        Optional<Integer> min = numbers.stream().reduce(Integer::min);
+        System.out.println("min");
+        min.ifPresent(System.out::println);
     }
 }
