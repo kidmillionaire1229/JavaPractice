@@ -38,6 +38,13 @@ public class NumericStream {
 
         int max = maxCalories.orElse(1);
         System.out.println("max = " + max);
+
+        //숫자 범위 이용
+        //range : 시작값과 종료값이 결과에 포함 x
+        //rangeClosed : 시작값과 종료값이 결과에 포함
+        IntStream evenNumbers = IntStream.rangeClosed(1, 100)
+                .filter(n -> n % 2 == 0);
+        System.out.println("짝수의 개수"+evenNumbers.count());
     }
 
 }
