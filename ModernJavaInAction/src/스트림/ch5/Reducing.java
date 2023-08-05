@@ -26,11 +26,17 @@ public class Reducing {
         min.ifPresent(System.out::println);
 
 
-        //음식 총 칼로리 합계 구하기 
+        //음식 총 칼로리 합계 구하기
         Integer totalCalories = Dish.menu.stream()
                 .map(Dish::getCalories)
                 .reduce(0, Integer::sum);
         System.out.println("totalCalories = " + totalCalories);
+
+        //음식 총 개수 구하기
+        Integer mapReduceCountDish = Dish.menu.stream()
+                .map(dish -> 1)
+                .reduce(0, (Integer::sum));
+        System.out.println("mapReduceCountDish = " + mapReduceCountDish);
 
     }
 }
