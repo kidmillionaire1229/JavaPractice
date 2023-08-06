@@ -1,6 +1,7 @@
 package 스트림.ch5;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class BuildingStreams {
@@ -39,6 +40,11 @@ public class BuildingStreams {
         Stream.iterate(new int[]{0,1},array->new int[]{array[1],array[0]+array[1]})
                 .limit(10)
                 .forEach(t->System.out.println(t[0]));
+
+        //자바 9 , predicate 이용 중단 지점 생성
+        System.out.println("using predicate in iterate");
+        IntStream.iterate(0,n->n<100,n->n+4)
+                .forEach(System.out::println);
     }
 
 
