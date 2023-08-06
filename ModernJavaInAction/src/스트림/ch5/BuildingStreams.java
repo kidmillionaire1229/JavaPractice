@@ -74,6 +74,23 @@ public class BuildingStreams {
             }
         }).limit(5)
                 .forEach(System.out::println);
+
+        //피보나치 generate로 구현
+        System.out.println("fibonacci with generate");
+        IntSupplier fib = new IntSupplier() {
+            private int previous = 0;
+            private int current = 1;
+            @Override
+            public int getAsInt() {
+                int nextValue = this.previous + this.current;
+                this.previous = this.current;
+                this.current = nextValue;
+                return this.previous;
+            }
+        };
+        IntStream.generate(fib)
+                .limit(5)
+                .forEach(System.out::println);
     }
 
 
