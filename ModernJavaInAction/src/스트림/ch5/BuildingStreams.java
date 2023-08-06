@@ -51,6 +51,12 @@ public class BuildingStreams {
         IntStream.iterate(0,n->n+4)
                 .takeWhile(n->n<100)
                 .forEach(System.out::println);
+
+        //Stream.generate : 상태값을 저장하지 않을 경우 무한스트림을 생성
+        System.out.println("make random number with Math.random");
+        Stream.generate(Math::random)
+                .limit(5)
+                .forEach(System.out::println);
     }
 
 
