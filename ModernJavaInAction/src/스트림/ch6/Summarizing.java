@@ -12,6 +12,7 @@ public class Summarizing {
     public static void main(String[] args) {
         System.out.println("Number of dishes: "+howManyDishes());
         findMostCaloricDish();
+        System.out.println("total Calories : "+calculateTotalCalories());
     }
 
     //Collectors.counting : stream 개수 반환
@@ -20,6 +21,7 @@ public class Summarizing {
     }
 
     //Collectors.maxBy : 최댓값 검색
+    //Comparator의 구현체를 인자로 받는다.
     private static void findMostCaloricDish(){
         Comparator<Dish> dishCaloriesComparator =
                 Comparator.comparingInt(Dish::getCalories);
@@ -27,6 +29,12 @@ public class Summarizing {
         Optional<Dish> mostCalireDish = Dish.menu.stream()
                 .collect(maxBy(dishCaloriesComparator));
         System.out.println("mostCalireDish.get() = " + mostCalireDish.get());
+    }
+
+    //Collectors.summingInt
+    //객체를 int 형으로 매핑한 후, 합을 도출
+    private static int calculateTotalCalories(){
+        return Dish.menu.stream().collect(summingInt(Dish::getCalories));
     }
 
 }
