@@ -21,6 +21,13 @@ public class BuildingStreams {
         //Arrays.stream
         int[] numbers = {2,3,5,7,11,13};
         System.out.println("Stream in Array-> sum="+Arrays.stream(numbers).sum());
+
+        //Stream.iterate : 무한 스트림 생성 (초깃값, 람다식)
+        //limit 이용하여 10개로 제한
+        System.out.println("infinite stream with Stream.iterate");
+        Stream.iterate(0,n->n+2)
+                .limit(10)
+                .forEach(System.out::println);
     }
 
 
