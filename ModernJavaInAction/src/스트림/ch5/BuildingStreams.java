@@ -1,5 +1,6 @@
 package 스트림.ch5;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class BuildingStreams {
@@ -17,6 +18,9 @@ public class BuildingStreams {
                 .flatMap(key -> Stream.ofNullable(key));
         values.forEach(System.out::println);
 
+        //Arrays.stream
+        int[] numbers = {2,3,5,7,11,13};
+        System.out.println("Stream in Array-> sum="+Arrays.stream(numbers).sum());
     }
 
 
