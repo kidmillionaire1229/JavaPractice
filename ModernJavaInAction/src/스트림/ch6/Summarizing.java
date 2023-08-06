@@ -13,6 +13,7 @@ public class Summarizing {
         System.out.println("Number of dishes: "+howManyDishes());
         findMostCaloricDish();
         System.out.println("total Calories : "+calculateTotalCalories());
+        System.out.println("average calories: "+calculateAverageCalories());
     }
 
     //Collectors.counting : stream 개수 반환
@@ -35,6 +36,12 @@ public class Summarizing {
     //객체를 int 형으로 매핑한 후, 합을 도출
     private static int calculateTotalCalories(){
         return Dish.menu.stream().collect(summingInt(Dish::getCalories));
+    }
+
+    //Collectors.averageInt
+    //객체를 int 형으로 매핑한 후, 평균을 도출
+    private static Double calculateAverageCalories(){
+        return Dish.menu.stream().collect(averagingInt(Dish::getCalories));
     }
 
 }
