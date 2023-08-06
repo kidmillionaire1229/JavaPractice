@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.*;
 
 
 import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.Optional;
 import 스트림.ch4.Dish;
 
@@ -14,6 +15,7 @@ public class Summarizing {
         findMostCaloricDish();
         System.out.println("total Calories : "+calculateTotalCalories());
         System.out.println("average calories: "+calculateAverageCalories());
+        System.out.println("Menu statistics : "+calculateMenuStatistics());
     }
 
     //Collectors.counting : stream 개수 반환
@@ -42,6 +44,11 @@ public class Summarizing {
     //객체를 int 형으로 매핑한 후, 평균을 도출
     private static Double calculateAverageCalories(){
         return Dish.menu.stream().collect(averagingInt(Dish::getCalories));
+    }
+
+    //Collectors.summarizingInt :요약 연산
+    private static IntSummaryStatistics calculateMenuStatistics(){
+        return Dish.menu.stream().collect(summarizingInt(Dish::getCalories));
     }
 
 }
