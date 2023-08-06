@@ -45,6 +45,12 @@ public class BuildingStreams {
         System.out.println("using predicate in iterate");
         IntStream.iterate(0,n->n<100,n->n+4)
                 .forEach(System.out::println);
+
+        //takeWhile 사용 중단 지점 생성
+        System.out.println("using takeWhile in iterate");
+        IntStream.iterate(0,n->n+4)
+                .takeWhile(n->n<100)
+                .forEach(System.out::println);
     }
 
 
