@@ -1,6 +1,7 @@
 package 스트림.ch5;
 
 import java.util.Arrays;
+import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -58,9 +59,20 @@ public class BuildingStreams {
                 .limit(5)
                 .forEach(System.out::println);
 
+        //1반환 (람다식 이용)
         System.out.println("return 1s");
         IntStream.generate(()->1)
                 .limit(5)
+                .forEach(System.out::println);
+
+        //2반환 (익명 객체 이용)
+        System.out.println("return 2s");
+        IntStream.generate(new IntSupplier() {
+            @Override
+            public int getAsInt() {
+                return 2;
+            }
+        }).limit(5)
                 .forEach(System.out::println);
     }
 
