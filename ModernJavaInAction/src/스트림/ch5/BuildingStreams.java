@@ -57,6 +57,11 @@ public class BuildingStreams {
         Stream.generate(Math::random)
                 .limit(5)
                 .forEach(System.out::println);
+
+        System.out.println("return 1s");
+        IntStream.generate(()->1)
+                .limit(5)
+                .forEach(System.out::println);
     }
 
 
