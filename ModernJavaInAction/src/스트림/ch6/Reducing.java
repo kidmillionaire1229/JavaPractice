@@ -24,6 +24,7 @@ public class Reducing {
     }
 
     //기본적인 Intstream::sum함수 사용
+    //정수 합계 기준 best practice : 간결하고 가독성이 높음 + 자동 언박싱 연산 수행 
     private static int calculateTotalCaloriesUsingSum(){
         return Dish.menu.stream().mapToInt(Dish::getCalories).sum();
     }
