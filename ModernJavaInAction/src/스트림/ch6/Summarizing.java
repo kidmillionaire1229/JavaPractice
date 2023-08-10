@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.*;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import 스트림.ch4.Dish;
 
 public class Summarizing {
@@ -16,6 +17,7 @@ public class Summarizing {
         System.out.println("total Calories : "+calculateTotalCalories());
         System.out.println("average calories: "+calculateAverageCalories());
         System.out.println("Menu statistics : "+calculateMenuStatistics());
+        System.out.println("short menu: "+getShortMenu());
     }
 
     //Collectors.counting : stream 개수 반환
@@ -49,6 +51,11 @@ public class Summarizing {
     //Collectors.summarizingInt :요약 연산
     private static IntSummaryStatistics calculateMenuStatistics(){
         return Dish.menu.stream().collect(summarizingInt(Dish::getCalories));
+    }
+
+    //Collectors.joining : 스트림의 각 객체에 toString 메서드 호출하여 모든 문자열을 하나의 문자열로 반환
+    private static String getShortMenu(){
+        return Dish.menu.stream().map(Dish::getName).collect(joining());
     }
 
 }
