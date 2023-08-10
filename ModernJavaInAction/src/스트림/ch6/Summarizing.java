@@ -18,6 +18,7 @@ public class Summarizing {
         System.out.println("average calories: "+calculateAverageCalories());
         System.out.println("Menu statistics : "+calculateMenuStatistics());
         System.out.println("short menu: "+getShortMenu());
+        System.out.println("short menu comma separated: "+getShorMenuCommaSeparated());
     }
 
     //Collectors.counting : stream 개수 반환
@@ -58,4 +59,8 @@ public class Summarizing {
         return Dish.menu.stream().map(Dish::getName).collect(joining());
     }
 
+    //Collectors.joining : 콤마(,)로 구분 문자열을 설정하여, 연결 요소들을 콤마로 구분 
+    private static String getShorMenuCommaSeparated(){
+        return Dish.menu.stream().map(Dish::getName).collect(joining(", "));
+    }
 }
