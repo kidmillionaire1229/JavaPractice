@@ -1,5 +1,6 @@
 package 스트림.ch6;
 
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.flatMapping;
 import static java.util.stream.Collectors.groupingBy;
@@ -26,6 +27,7 @@ public class Grouping {
         System.out.println("Dishes names(string) grouped by type"+groupDishNamesByType());
         System.out.println("Dish Tags grouped by Type: "+groupDishTagsByType());
         System.out.println("Disheds grouped by type and caloric level: "+groupDishedByTypeAndCaloricLevel());
+        System.out.println("Count Dishes in groups: "+countDishesInGroups());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType(){
@@ -62,6 +64,11 @@ public class Grouping {
                     else return CaloricLevel.FAT;
                 }))
         );
+    }
+
+    //Dish의 종류별 개수 반환
+    private static Map<Dish.Type,Long> countDishesInGroups(){
+        return menu.stream().collect(groupingBy(Dish::getType,counting()));
     }
 
 }
