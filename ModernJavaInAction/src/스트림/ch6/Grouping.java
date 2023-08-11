@@ -1,12 +1,16 @@
 package 스트림.ch6;
 
 import static java.util.stream.Collectors.filtering;
+import static java.util.stream.Collectors.flatMapping;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
+import static 스트림.ch4.Dish.dishTags;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import 스트림.ch4.Dish;
 
 
@@ -19,6 +23,7 @@ public class Grouping {
         System.out.println("Dishes grouped by caloric level: "+groupDishesByCaloricLevel());
         System.out.println("caloric dishes grouped by type: "+groupCaloricDishesByType());
         System.out.println("Dishes names(string) grouped by type"+groupDishNamesByType());
+        System.out.println("Dish Tags grouped by Type: "+groupDishTagsByType());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType(){
@@ -40,6 +45,10 @@ public class Grouping {
 
     private static Map<Dish.Type, List<String>> groupDishNamesByType(){
         return Dish.menu.stream().collect(groupingBy(Dish::getType,mapping(Dish::getName,toList())));
+    }
+
+    private static Map<Dish.Type, Set<String>> groupDishTagsByType(){
+        return Dish.menu.stream().collect(groupingBy(Dish::getType,flatMapping(dish->dishTags.get(dish.getName()).stream(),toSet())));
     }
 
 }
