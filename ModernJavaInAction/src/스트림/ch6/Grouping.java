@@ -9,6 +9,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.maxBy;
 import static java.util.stream.Collectors.reducing;
+import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static 스트림.ch4.Dish.dishTags;
@@ -36,6 +37,7 @@ public class Grouping {
         System.out.println("Count Dishes in groups: "+countDishesInGroups());
         System.out.println("Most caloric dishes by type "+mostCaloricDishesByType());
         System.out.println("Most caloric dishes by type "+mostCaloricDishesByTypeWithoutOptionals());
+        System.out.println("Sum calories by type "+sumCaloriesByType());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType(){
@@ -96,6 +98,12 @@ public class Grouping {
                                 Optional::get
                         ))
         );
+    }
+
+    //groupingBy의 2번째 인자로 팩토리 메서드 전달
+    //그룹별 리듀싱 수행 : 각 Dish 종류별 칼로리의 합
+    private static Map<Dish.Type, Integer> sumCaloriesByType(){
+        return menu.stream().collect(groupingBy(Dish::getType,summingInt(Dish::getCalories)));
     }
 
 }
