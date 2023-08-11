@@ -38,6 +38,7 @@ public class Grouping {
         System.out.println("Most caloric dishes by type "+mostCaloricDishesByType());
         System.out.println("Most caloric dishes by type "+mostCaloricDishesByTypeWithoutOptionals());
         System.out.println("Sum calories by type "+sumCaloriesByType());
+        System.out.println("caloric levels by type:"+caloricLevelByType());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType(){
@@ -104,6 +105,15 @@ public class Grouping {
     //그룹별 리듀싱 수행 : 각 Dish 종류별 칼로리의 합
     private static Map<Dish.Type, Integer> sumCaloriesByType(){
         return menu.stream().collect(groupingBy(Dish::getType,summingInt(Dish::getCalories)));
+    }
+
+    //groupingBy의 2번째 인자로 mapping함수 전달하여 변환
+    private static Map<Dish.Type,Set<CaloricLevel>> caloricLevelByType(){
+        return menu.stream().collect(groupingBy(Dish::getType,mapping(
+                dish -> {if(dish.getCalories()<=400) return CaloricLevel.DIET;
+                        else if (dish.getCalories() < 700) return CaloricLevel.NORMAL;
+                        else return CaloricLevel.FAT; },toSet()
+        )));
     }
 
 }
