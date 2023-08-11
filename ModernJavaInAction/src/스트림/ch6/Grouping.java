@@ -1,6 +1,8 @@
 package 스트림.ch6;
 
+import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ public class Grouping {
     public static void main(String[] args) {
         System.out.println("Dishes grouped by type: "+groupDishesByType());
         System.out.println("Dishes grouped by caloric level: "+groupDishesByCaloricLevel());
+        System.out.println("caloric dishes grouped by type: "+groupCaloricDishesByType());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType(){
@@ -27,6 +30,10 @@ public class Grouping {
                         else if(dish.getCalories()<=700) return CaloricLevel.NORMAL;
                         else return CaloricLevel.FAT;
                 }));
+    }
+
+    private static Map<Dish.Type,List<Dish>> groupCaloricDishesByType(){
+        return Dish.menu.stream().collect(groupingBy(Dish::getType,filtering(dish->dish.getCalories()>500,toList())));
     }
 
 }
