@@ -7,6 +7,7 @@ import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static 스트림.ch4.Dish.dishTags;
+import static 스트림.ch4.Dish.menu;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class Grouping {
         System.out.println("caloric dishes grouped by type: "+groupCaloricDishesByType());
         System.out.println("Dishes names(string) grouped by type"+groupDishNamesByType());
         System.out.println("Dish Tags grouped by Type: "+groupDishTagsByType());
+        System.out.println("Disheds grouped by type and caloric level: "+groupDishedByTypeAndCaloricLevel());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType(){
@@ -49,6 +51,17 @@ public class Grouping {
 
     private static Map<Dish.Type, Set<String>> groupDishTagsByType(){
         return Dish.menu.stream().collect(groupingBy(Dish::getType,flatMapping(dish->dishTags.get(dish.getName()).stream(),toSet())));
+    }
+
+    //groupingBy를 2번 사용하여 , 1번째 분류 함수 이후에 2번째 분류 함수를 통해 분류 작업 수행
+    private static Map<Dish.Type,Map<CaloricLevel,List<Dish>>> groupDishedByTypeAndCaloricLevel(){
+        return menu.stream().collect(
+                groupingBy(Dish::getType,groupingBy((Dish dish)->{
+                    if (dish.getCalories()<=400) return CaloricLevel.DIET;
+                    else if (dish.getCalories()<=700) return CaloricLevel.NORMAL;
+                    else return CaloricLevel.FAT;
+                }))
+        );
     }
 
 }
