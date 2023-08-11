@@ -1,12 +1,14 @@
 package 스트림.ch6;
 
 import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.flatMapping;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.maxBy;
+import static java.util.stream.Collectors.reducing;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static 스트림.ch4.Dish.dishTags;
@@ -33,6 +35,7 @@ public class Grouping {
         System.out.println("Disheds grouped by type and caloric level: "+groupDishedByTypeAndCaloricLevel());
         System.out.println("Count Dishes in groups: "+countDishesInGroups());
         System.out.println("Most caloric dishes by type "+mostCaloricDishesByType());
+        System.out.println("Most caloric dishes by type "+mostCaloricDishesByTypeWithoutOptionals());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType(){
@@ -81,6 +84,17 @@ public class Grouping {
         return menu.stream().collect(
                 groupingBy(Dish::getType,
                         maxBy(comparingInt(Dish::getCalories)))
+        );
+    }
+
+    //Optional제거 : collectingAndThen을 사용
+    private static Map<Dish.Type,Dish> mostCaloricDishesByTypeWithoutOptionals(){
+        return menu.stream().collect(
+                groupingBy(Dish::getType,
+                        collectingAndThen(
+                                reducing((d1,d2)->d1.getCalories() > d2.getCalories() ? d1 : d2),
+                                Optional::get
+                        ))
         );
     }
 
