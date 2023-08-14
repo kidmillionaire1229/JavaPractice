@@ -49,7 +49,7 @@ public class OptionalMain {
     //Optional::stream사용
     //Stream<Optional<String>> -> Stream<String>으로 변환
     //값이 있을땐 Stream<String>, 없을땐 Stream.empty를 반환
-    //flatMap 실행시 Stream.empty는 제외하고 매핑 시킴 
+    //flatMap 실행시 Stream.empty는 제외하고 매핑 시킴
     //stream.filter(Optional::isPresent).map(Optional::get).collect(toSet());
 
     public Set<String> getCarInsuranceNames(List<Person> persons){
@@ -60,4 +60,15 @@ public class OptionalMain {
                 .flatMap(Optional::stream)
                 .collect(toSet());
     }
+
+    /**
+     * Optional<Person> -> 빈 값일땐 그대로 Optional.empty반환
+     * Optional<Car> -> 빈 값일땐 그대로 Optional.empty 반환
+     * 둘 다 값이 있을때만 Optional<Insurance>반환
+     * findCheapesInsurace의 반환값은 Insurace 
+    public Optional<Insurance> nullSafeFindCheapestInsurance(
+            Optional<Person> person, Optional<Car> car){
+        return person.flatMap(p->car.map(c->findCheapestInsurace(p,c)));
+    }
+     **/
 }
