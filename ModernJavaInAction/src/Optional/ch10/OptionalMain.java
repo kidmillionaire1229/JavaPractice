@@ -20,5 +20,11 @@ public class OptionalMain {
         //Optional.ofNullable : null값을 저장할 수 있는 Optional
         Optional<Car> nullCarOpt2 = Optional.ofNullable(nullCar);
 
+        //Optional의 map 메서드
+        //Optional<Insurance> -> Optional<String>
+        Insurance insurance = new Insurance();
+        Optional<Insurance> optInsurance = Optional.ofNullable(insurance);
+        Optional<String> name = optInsurance.map(Insurance::getName);
+
     }
 }
