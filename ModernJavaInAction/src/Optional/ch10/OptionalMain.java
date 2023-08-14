@@ -26,5 +26,10 @@ public class OptionalMain {
         Optional<Insurance> optInsurance = Optional.ofNullable(insurance);
         Optional<String> name = optInsurance.map(Insurance::getName);
 
+        Insurance insuracneNull = null;
+        Optional<Insurance> optInsuranceNull = Optional.ofNullable(insuracneNull);
+        Optional<String> nullString = optInsuranceNull.map(Insurance::getName);
+        System.out.println("nullString = " + nullString);
+
     }
 }
