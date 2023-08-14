@@ -17,5 +17,8 @@ public class OptionalMain {
         Car nullCar = null;
         //Optional<Car> nullCarOpt = Optional.of(nullCar);
 
+        //Optional.ofNullable : null값을 저장할 수 있는 Optional
+        Optional<Car> nullCarOpt2 = Optional.ofNullable(nullCar);
+
     }
 }
