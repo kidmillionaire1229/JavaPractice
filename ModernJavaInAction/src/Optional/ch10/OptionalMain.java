@@ -32,4 +32,11 @@ public class OptionalMain {
         System.out.println("nullString = " + nullString);
 
     }
+
+    public static String getCarInsuraceName(Optional<Person> person){
+        return person.flatMap(Person::getCar)
+                .flatMap(Car::getInsurance)
+                .map(Insurance::getName)
+                .orElse("Unknown");
+    }
 }
