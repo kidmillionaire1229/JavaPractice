@@ -9,7 +9,13 @@ public class OptionalMain {
         Optional<Car> empty = Optional.empty();
 
         //Optional.of로 null이 아닌 값을 포함하는 Optional 만듬
+        //1. Car객체가 null이 아니므로, NPE X
         Car car = new Car();
-        Optional<Car> car2 = Optional.of(car);
+        Optional<Car> optCar = Optional.of(car);
+
+        //2.Car객체가 null이면 car에서 NPE 발생 => of함수는 값이 null이 아닌 값이 들어가야한다.
+        Car nullCar = null;
+        //Optional<Car> nullCarOpt = Optional.of(nullCar);
+
     }
 }
