@@ -1,6 +1,11 @@
 package Optional.ch10;
 
+import static java.util.stream.Collectors.toSet;
+
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class OptionalMain {
 
@@ -38,5 +43,21 @@ public class OptionalMain {
                 .flatMap(Car::getInsurance)
                 .map(Insurance::getName)
                 .orElse("Unknown");
+    }
+
+
+    //Optional::stream사용
+    //Stream<Optional<String>> -> Stream<String>으로 변환
+    //값이 있을땐 Stream<String>, 없을땐 Stream.empty를 반환
+    //flatMap 실행시 Stream.empty는 제외하고 매핑 시킴 
+    //stream.filter(Optional::isPresent).map(Optional::get).collect(toSet());
+
+    public Set<String> getCarInsuranceNames(List<Person> persons){
+        return persons.stream()
+                .map(Person::getCar)
+                .map(optCar -> optCar.flatMap(Car::getInsurance))
+                .map(optIns -> optIns.map(Insurance::getName))
+                .flatMap(Optional::stream)
+                .collect(toSet());
     }
 }
