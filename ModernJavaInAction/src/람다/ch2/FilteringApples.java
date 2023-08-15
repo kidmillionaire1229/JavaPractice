@@ -15,8 +15,9 @@ public class FilteringApples {
         System.out.println("filtering GreenApples : "+filterGreenApples(inventory));
         System.out.println("filtering Apples By Color(Red)"+filterApplesByColor(inventory,Color.RED));
         System.out.println("filtering Apples By minimum weight(100)" +filterApplesByWeight(inventory,100));
-        System.out.println("filtering Apples By Color(Red) and minimum weight(150"
-       
+        System.out.println("filtering Apples By Color(Red) and minimum weight(100): "
+                +filterApples(inventory,new AppleRedAndHeavyPredicate()));
+
     }
 
     //1. 녹색 사과 필터링
@@ -97,7 +98,7 @@ public class FilteringApples {
         @Override
         public boolean test(Apple apple) {
             return Color.RED.equals(apple.getColor())
-                    && apple.getWeight()>150;
+                    && apple.getWeight()>100;
         }
     }
 
