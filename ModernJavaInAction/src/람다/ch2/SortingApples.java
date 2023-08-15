@@ -39,7 +39,12 @@ public class SortingApples {
         Comparator<Apple> c = Comparator.comparing((Apple a)-> a.getWeight());
         inventory.sort(Comparator.comparing(apple -> apple.getWeight()));
 
-        //4.메서드 참조 
+        //reshuffle
+        inventory.set(1,new Apple(10,Color.RED));
+        //4.메서드 참조
+        inventory.sort(Comparator.comparing(Apple::getWeight));
+        System.out.println("sort with 메서드 참조: "+inventory);
+
 
     }
 
