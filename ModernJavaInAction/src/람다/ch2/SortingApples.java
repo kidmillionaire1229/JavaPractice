@@ -16,6 +16,24 @@ public class SortingApples {
         //AppleComparator 구현
         inventory.sort(new AppleComparator());
         System.out.println("sort By AppleComparator"+inventory);
+
+        //shuffle
+        inventory.set(1,new Apple(30,Color.GREEN));
+        //2.익명 클래스
+        inventory.sort(new Comparator<Apple>(){
+            @Override
+            public int compare(Apple a1, Apple a2){
+                return a1.getWeight().compareTo(a2.getWeight());
+            }
+        });
+        System.out.println("sort By 익명 클래스 "+inventory);
+
+        //reshuffle
+        inventory.set(1,new Apple(20,Color.RED));
+
+        //3.람다식
+        inventory.sort((a1,a2)-> a1.getWeight().compareTo(a2.getWeight()));
+        System.out.println("sort By Lamda Expression"+inventory);
     }
 
     static class AppleComparator implements Comparator<Apple>{
