@@ -13,6 +13,8 @@ public class FilteringApples {
                 new Apple(120, Color.RED));
 
         System.out.println("filtering GreenApples : "+filterGreenApples(inventory));
+        System.out.println("filtering Apples By Color(Red)"+filterApplesByColor(inventory,Color.RED));
+
     }
 
     //1. 녹색 사과 필터링
@@ -21,6 +23,18 @@ public class FilteringApples {
         List<Apple> result = new ArrayList<>();
         for(Apple apple: inventory){
             if(Color.GREEN.equals(apple.getColor())){
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    //2. 색을 파라미터화
+    //만약 다른 색을 필터링하고 싶다면..?
+    public static List<Apple> filterApplesByColor(List<Apple> inventory, Color color){
+        List<Apple> result = new ArrayList<>();
+        for(Apple apple : inventory){
+            if (apple.getColor().equals(color)){
                 result.add(apple);
             }
         }
