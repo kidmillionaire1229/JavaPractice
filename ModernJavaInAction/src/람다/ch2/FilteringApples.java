@@ -53,6 +53,18 @@ public class FilteringApples {
         return result;
     }
 
+    //4. 추상적 조건으로 필터링
+    //ApplePredicate의 구현체를 파라미터로 전달하여 필터링
+    public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate p){
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if(p.test(apple)){
+                result.add(apple);
+            }
+        }
+        return result; 
+    }
+
     //선택 조건을 결정하는 인터페이스인 프레디케이트 인터페이스 정의
     interface ApplePredicate{
         public boolean test(Apple apple);
