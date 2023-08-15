@@ -20,7 +20,10 @@ public class LamdaExample {
                 return a1.getWeight().compareTo(a2.getWeight());
             }
         });
-        System.out.println("sort Apple By Weight(익명클래스)"+sortApple1);
-    }
+        System.out.println("sort Apple By Weight(익명클래스)" + sortApple1);
 
+        List<Apple> sortApple2 = inventory;
+        sortApple2.sort((Apple a1, Apple a2)-> a1.getWeight().compareTo(a2.getWeight()));
+        System.out.println("sort Apple By Lamda"+sortApple2);
+    }
 }
