@@ -1,5 +1,7 @@
 package 람다.ch2;
 
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,14 @@ public class FilteringApples {
         System.out.println("filtering Apples By minimum weight(100)" +filterApplesByWeight(inventory,100));
         System.out.println("filtering Apples By Color(Red) and minimum weight(100): "
                 +filterApples(inventory,new AppleRedAndHeavyPredicate()));
-
+        //5.익명 클래스 사용
+        List<Apple> redApples = filterApples(inventory, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return Color.RED.equals(apple.getColor());
+            }
+        });
+        System.out.println("익명 클래스 사용(Red Apple)"+redApples);
     }
 
     //1. 녹색 사과 필터링
