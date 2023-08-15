@@ -2,9 +2,9 @@ package 람다.ch2;
 
 public class Apple {
     private int weight = 0;
-    private String color = "";
+    private Color color;
 
-    public Apple(int weight, String color) {
+    public Apple(int weight, Color color) {
         this.weight = weight;
         this.color = color;
     }
@@ -17,11 +17,11 @@ public class Apple {
         this.weight = weight;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
