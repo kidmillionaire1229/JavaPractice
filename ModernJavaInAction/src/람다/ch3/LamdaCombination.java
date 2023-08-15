@@ -5,8 +5,11 @@ import static java.util.Comparator.comparing;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import 람다.ch2.Apple;
 import 람다.ch2.Color;
+import 람다.ch2.FilteringApples;
+import 람다.ch2.FilteringApples.ApplePredicate;
 
 public class LamdaCombination {
 
@@ -32,6 +35,32 @@ public class LamdaCombination {
                 .reversed()
                 .thenComparing(Apple::getColor));
 
+        //Predicate 조합
+        //1. negate
+        Predicate<Apple> notGreenApple = new AppleColorPredicate().negate();
+
+        //2.and
+        Predicate<Apple> greenAndHeavyApple = new AppleColorPredicate().and(new AppleWeightPredicate());
+
+        //3.or
+        Predicate<Apple> greenOrHeavyApple = new AppleColorPredicate().or(new AppleWeightPredicate());
+
+    }
+
+    static class AppleColorPredicate implements Predicate<Apple> {
+
+        @Override
+        public boolean test(Apple apple) {
+            return Color.GREEN.equals(apple.getColor());
+        }
+    }
+
+    static class AppleWeightPredicate implements Predicate<Apple>{
+
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getWeight() > 150;
+        }
     }
 
 }
