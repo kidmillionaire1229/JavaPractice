@@ -53,5 +53,10 @@ public class FilteringApples {
         return result;
     }
 
+    //선택 조건을 결정하는 인터페이스인 프레디케이트 인터페이스 정의
+    interface ApplePredicate{
+        public boolean test(Apple a); 
+    }
+
 }
 
