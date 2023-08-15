@@ -55,7 +55,26 @@ public class FilteringApples {
 
     //선택 조건을 결정하는 인터페이스인 프레디케이트 인터페이스 정의
     interface ApplePredicate{
-        public boolean test(Apple a); 
+        public boolean test(Apple apple);
+    }
+
+    //무게를 기준으로 하여, ApplePredicate 구현
+    static class AppleWeightPredicate implements ApplePredicate{
+
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getWeight() > 150;
+        }
+    }
+
+    //색깔을 기준으로 하여, ApplePredicate 구현
+    //GREEN
+    static class AppleColorPredicate implements ApplePredicate{
+
+        @Override
+        public boolean test(Apple apple) {
+            return Color.GREEN.equals(apple.getColor());
+        }
     }
 
 }
