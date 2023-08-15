@@ -21,6 +21,16 @@ public class LamdaCombination {
         //무게를 내림차순으로 정렬
         inventory.sort(comparing(Apple::getWeight).reversed());
         System.out.println("comparator.reversed :"+inventory);
+        
+        //같은 무게 하나 추가 
+        inventory.set(2,new Apple(120,Color.GREEN));
+        System.out.println("inventory = " + inventory);
+
+        //같은 값이 있다면 한번더 compare
+        //Color에 compare이 있다고 가정
+        inventory.sort(comparing(Apple::getWeight)
+                .reversed()
+                .thenComparing(Apple::getColor));
 
     }
 
