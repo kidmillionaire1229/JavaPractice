@@ -32,6 +32,15 @@ public class FilteringApples {
         List<Apple> filterWithLamda = filterApples(inventory,
                 (Apple apple) -> Color.RED.equals(apple.getColor()));
         System.out.println("람다식 사용(Red Apple) "+filterWithLamda);
+
+        //7. 리스트 형식으로 추상화
+        //제네릭 사용 : Apple -> T로 선언하여 형식을 파라미터화
+        List<Apple> filterWithGeneric = filter(inventory, (Apple apple) -> Color.RED.equals(apple.getColor()));
+        System.out.println("filter apples with generic: "+filterWithGeneric);
+        //Integer도 filter가능
+        List<Integer> numbers = Arrays.asList(1,2,3);
+        List<Integer> evenNumbers = filter(numbers, (Integer i) -> i % 2 == 0);
+        System.out.println("filter even numbers "+evenNumbers);
     }
 
     //1. 녹색 사과 필터링
@@ -77,6 +86,19 @@ public class FilteringApples {
         for (Apple apple : inventory) {
             if(p.test(apple)){
                 result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    interface Predicate<T>{
+        boolean test(T t);
+    }
+    public static <T> List<T> filter(List<T> list, Predicate<T> p){
+        List<T> result = new ArrayList<>();
+        for (T e : list) {
+            if(p.test(e)){
+                result.add(e);
             }
         }
         return result;
