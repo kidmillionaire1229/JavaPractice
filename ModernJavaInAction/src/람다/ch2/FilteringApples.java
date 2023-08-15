@@ -14,7 +14,7 @@ public class FilteringApples {
 
         System.out.println("filtering GreenApples : "+filterGreenApples(inventory));
         System.out.println("filtering Apples By Color(Red)"+filterApplesByColor(inventory,Color.RED));
-
+        System.out.println("filtering Apples By minimum weight(100)" +filterApplesByWeight(inventory,100));
     }
 
     //1. 녹색 사과 필터링
@@ -35,6 +35,18 @@ public class FilteringApples {
         List<Apple> result = new ArrayList<>();
         for(Apple apple : inventory){
             if (apple.getColor().equals(color)){
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    //3.무게를 파라미터화
+    //기준이 색이 아니라 일정 이상의 무게가 된다면..?
+    public static List<Apple> filterApplesByWeight(List<Apple> inventory, int weight){
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if (apple.getWeight() > weight){
                 result.add(apple);
             }
         }
