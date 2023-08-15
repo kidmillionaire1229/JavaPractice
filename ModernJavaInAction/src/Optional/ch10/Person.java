@@ -6,7 +6,7 @@ public class Person {
 
     private Optional<Car> car;
 
-    private String age;
+    private int age;
 
     public Optional<Car> getCar(){
         return car;
