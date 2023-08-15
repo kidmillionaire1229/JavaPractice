@@ -27,6 +27,11 @@ public class FilteringApples {
             }
         });
         System.out.println("익명 클래스 사용(Red Apple)"+redApples);
+
+        //6.람다 표현식 사용
+        List<Apple> filterWithLamda = filterApples(inventory,
+                (Apple apple) -> Color.RED.equals(apple.getColor()));
+        System.out.println("람다식 사용(Red Apple) "+filterWithLamda);
     }
 
     //1. 녹색 사과 필터링
