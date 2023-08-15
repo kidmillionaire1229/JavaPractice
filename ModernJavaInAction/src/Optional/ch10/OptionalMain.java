@@ -91,7 +91,7 @@ public class OptionalMain {
     }
 
     //String -> Integer 변환
-    //바꿀 수 없으면 NumberFormatException 예외처리 및 반환 
+    //바꿀 수 없으면 NumberFormatException 예외처리 및 반환
     public static Optional<Integer> stringToInt(String s){
         try{
             return Optional.of(Integer.parseInt(s));
@@ -99,4 +99,6 @@ public class OptionalMain {
             return Optional.empty();
         }
     }
+    //기본형 특화 Optional(OptionalInt, OptionalLong, OptionalDouble)은 map,flatMap,filter등을 지원하지 않는다.
+    //일반 Optional과 혼용할 수도 없다. OptionalInt << Optional<Integer> 
 }
