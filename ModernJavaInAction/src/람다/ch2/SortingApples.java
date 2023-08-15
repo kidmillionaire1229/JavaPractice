@@ -34,6 +34,13 @@ public class SortingApples {
         //3.람다식
         inventory.sort((a1,a2)-> a1.getWeight().compareTo(a2.getWeight()));
         System.out.println("sort By Lamda Expression"+inventory);
+
+        //Comparator의 comparing이용
+        Comparator<Apple> c = Comparator.comparing((Apple a)-> a.getWeight());
+        inventory.sort(Comparator.comparing(apple -> apple.getWeight()));
+
+        //4.메서드 참조 
+
     }
 
     static class AppleComparator implements Comparator<Apple>{
