@@ -15,6 +15,8 @@ public class FilteringApples {
         System.out.println("filtering GreenApples : "+filterGreenApples(inventory));
         System.out.println("filtering Apples By Color(Red)"+filterApplesByColor(inventory,Color.RED));
         System.out.println("filtering Apples By minimum weight(100)" +filterApplesByWeight(inventory,100));
+        System.out.println("filtering Apples By Color(Red) and minimum weight(150"
+       
     }
 
     //1. 녹색 사과 필터링
@@ -62,7 +64,7 @@ public class FilteringApples {
                 result.add(apple);
             }
         }
-        return result; 
+        return result;
     }
 
     //선택 조건을 결정하는 인터페이스인 프레디케이트 인터페이스 정의
@@ -86,6 +88,16 @@ public class FilteringApples {
         @Override
         public boolean test(Apple apple) {
             return Color.GREEN.equals(apple.getColor());
+        }
+    }
+
+    //색깔 (Red), 무게 (150초과)를 기준으로 하는 ApplePredicate 구현
+    static class AppleRedAndHeavyPredicate implements ApplePredicate{
+
+        @Override
+        public boolean test(Apple apple) {
+            return Color.RED.equals(apple.getColor())
+                    && apple.getWeight()>150;
         }
     }
 
