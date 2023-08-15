@@ -3,6 +3,7 @@ package 람다.ch3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class Lamdas {
@@ -12,12 +13,21 @@ public class Lamdas {
     //함수형 인터페이스를 인수로 받는 메서드에만 람다 표현식을 사용할 수 있다.
 
     public static void main(String[] args) {
+
+        //predicate
         List<String> listOfStrings = Arrays.asList("1","a","");
         List<String> nonEmptyStrings = filter(listOfStrings, nonEmptyStringPredicate);
         System.out.println(nonEmptyStrings);
+
+        //consumer
+        forEach(
+                Arrays.asList(1,2,3),
+                (Integer i) -> System.out.println(i)
+        );
     }
 
     //Predicate 예제
+    //T -> boolean
     static Predicate<String> nonEmptyStringPredicate = (String s) -> !s.isEmpty();
 
     public static <T> List<T> filter(List<T> list, Predicate<T> p){
@@ -28,6 +38,14 @@ public class Lamdas {
             }
         }
         return result;
+    }
+
+    //Consumer 예제
+    //T -> void
+    public static <T> void forEach(List<T> list, Consumer<T> c){
+        for (T t : list) {
+            c.accept(t);
+        }
     }
 
 }
