@@ -80,4 +80,13 @@ public class OptionalMain {
         optInsurance.filter(insurance -> "CambridgeInsurance".equals(insurance.getName()))
                 .ifPresent(x-> System.out.println("ok"));
     }
+
+    //Person들 중에서 minAge이상인 사람들의 보험 이름 반환 
+    public static void getCarInsuranceName(Optional<Person> person, int minAge){
+        person.filter(p->p.getAge() >= minAge)
+                .flatMap(Person::getCar)
+                .flatMap(Car::getInsurance)
+                .map(Insurance::getName)
+                .orElse("unknown");
+    }
 }
