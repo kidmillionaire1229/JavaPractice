@@ -5,11 +5,11 @@ import static java.util.Comparator.comparing;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import 람다.ch2.Apple;
 import 람다.ch2.Color;
-import 람다.ch2.FilteringApples;
-import 람다.ch2.FilteringApples.ApplePredicate;
+
 
 public class LamdaCombination {
 
@@ -44,6 +44,22 @@ public class LamdaCombination {
 
         //3.or
         Predicate<Apple> greenOrHeavyApple = new AppleColorPredicate().or(new AppleWeightPredicate());
+
+        //Function 조합
+
+        //숫자 증가
+        //+1
+        Function<Integer,Integer> f = x -> x+1;
+        //*2
+        Function<Integer,Integer> g = x -> x*2;
+
+        //1. andThen
+        //g(f(x))
+        Function<Integer,Integer> h = f.andThen(g);
+
+        //2.compose
+        //f(g(x))
+        Function<Integer, Integer> h2 = f.compose(g);
 
     }
 
