@@ -71,4 +71,13 @@ public class OptionalMain {
         return person.flatMap(p->car.map(c->findCheapestInsurace(p,c)));
     }
      **/
+
+    //optional이 빈 객체가 아니고 + predicate에 일치할때 그 값을 반환한다.
+    //그렇지 않으면 빈 객체가 반환된다.
+    //optional 자체가 빈 값이면 filter 연산은 아무 동작 하지 않는다.
+    //
+    public static void filteringOptional(Optional<Insurance> optInsurance){
+        optInsurance.filter(insurance -> "CambridgeInsurance".equals(insurance.getName()))
+                .ifPresent(x-> System.out.println("ok"));
+    }
 }
