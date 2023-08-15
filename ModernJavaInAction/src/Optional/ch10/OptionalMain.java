@@ -81,12 +81,22 @@ public class OptionalMain {
                 .ifPresent(x-> System.out.println("ok"));
     }
 
-    //Person들 중에서 minAge이상인 사람들의 보험 이름 반환 
+    //Person들 중에서 minAge이상인 사람들의 보험 이름 반환
     public static void getCarInsuranceName(Optional<Person> person, int minAge){
         person.filter(p->p.getAge() >= minAge)
                 .flatMap(Person::getCar)
                 .flatMap(Car::getInsurance)
                 .map(Insurance::getName)
                 .orElse("unknown");
+    }
+
+    //String -> Integer 변환
+    //바꿀 수 없으면 NumberFormatException 예외처리 및 반환 
+    public static Optional<Integer> stringToInt(String s){
+        try{
+            return Optional.of(Integer.parseInt(s));
+        }catch (NumberFormatException e){
+            return Optional.empty();
+        }
     }
 }
